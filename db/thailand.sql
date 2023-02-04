@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 04, 2023 at 03:49 PM
+-- Generation Time: Feb 04, 2023 at 03:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project`
+-- Database: `thailand`
 --
 
 -- --------------------------------------------------------
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `amphures` (
-  `id_amphures` int(5) NOT NULL,
+  `id` int(5) NOT NULL,
   `code` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `name_amphures` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE `amphures` (
 -- Dumping data for table `amphures`
 --
 
-INSERT INTO `amphures` (`id_amphures`, `code`, `name_amphures`, `name_en`, `province_id`) VALUES
+INSERT INTO `amphures` (`id`, `code`, `name_amphures`, `name_en`, `province_id`) VALUES
 (1, '1001', 'เขตพระนคร', 'Khet Phra Nakhon', 1),
 (2, '1002', 'เขตดุสิต', 'Khet Dusit', 1),
 (3, '1003', 'เขตหนองจอก', 'Khet Nong Chok', 1),
@@ -1042,155 +1042,11 @@ INSERT INTO `amphures` (`id_amphures`, `code`, `name_amphures`, `name_en`, `prov
 -- --------------------------------------------------------
 
 --
--- Table structure for table `buy`
---
-
-CREATE TABLE `buy` (
-  `no_buy` int(10) NOT NULL,
-  `id_receipt_buy` varchar(10) NOT NULL,
-  `id_product` varchar(4) NOT NULL,
-  `buy_number` int(3) NOT NULL,
-  `price_buy` int(5) NOT NULL,
-  `total_buy` int(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `buy`
---
-
-INSERT INTO `buy` (`no_buy`, `id_receipt_buy`, `id_product`, `buy_number`, `price_buy`, `total_buy`, `status`) VALUES
-(4, 'B0001', 'A001', 1, 200, 200, '1'),
-(5, 'B0001', 'A002', 1, 230, 230, '1'),
-(6, 'B0001', 'A003', 1, 250, 250, '1'),
-(7, 'B0002', 'A001', 10, 200, 2000, '1'),
-(8, 'B0002', 'A002', 10, 200, 2000, '1'),
-(9, 'B0003', 'A003', 10, 200, 2000, '1'),
-(10, 'B0003', 'A005', 10, 200, 2000, '1'),
-(11, 'B0003', 'A006', 10, 200, 2000, '1'),
-(12, 'B0004', 'A007', 15, 200, 3000, '1'),
-(13, 'B0004', 'A008', 10, 200, 2000, '1'),
-(14, 'B0005', 'A004', 2, 200, 400, '1'),
-(15, 'B0006', 'A001', 10, 100, 1000, '1'),
-(16, 'B0006', 'A002', 20, 100, 2000, '1'),
-(17, 'B0007', 'A004', 500, 100, 50000, '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `company`
---
-
-CREATE TABLE `company` (
-  `id_company` varchar(3) NOT NULL,
-  `name_company` varchar(50) NOT NULL,
-  `tel_company` varchar(10) NOT NULL,
-  `id_provinces` varchar(10) NOT NULL,
-  `id_amphures` varchar(20) NOT NULL,
-  `id_districts` varchar(20) NOT NULL,
-  `zip_code` int(5) NOT NULL,
-  `address_company` varchar(100) NOT NULL,
-  `email_company` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `company`
---
-
-INSERT INTO `company` (`id_company`, `name_company`, `tel_company`, `id_provinces`, `id_amphures`, `id_districts`, `zip_code`, `address_company`, `email_company`) VALUES
-('F01', 'ห้างหุ้นส่วนจำกัด อังเจียมอะลูมิเนียม ', '074262860', '5', '75', '140202', 13130, 'ซอย 4 หมู่ 3', 'aluminumaung@gmail.com'),
-('F02', 'ห้างหุ้นส่วนจำกัด อังเจียมอะลูมิเนียม 2', '0888888888', '70', '928', '901104', 90110, '663', 'aluminumsirisuwan2@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `contractor`
---
-
-CREATE TABLE `contractor` (
-  `no_contractor` int(10) NOT NULL,
-  `id_receipt_contractor` varchar(10) NOT NULL,
-  `id_type_work` varchar(5) NOT NULL,
-  `width_contractor` int(3) NOT NULL,
-  `hight_contractor` int(3) NOT NULL,
-  `contractor_number` varchar(5) NOT NULL,
-  `total_contractor` int(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `contractor`
---
-
-INSERT INTO `contractor` (`no_contractor`, `id_receipt_contractor`, `id_type_work`, `width_contractor`, `hight_contractor`, `contractor_number`, `total_contractor`, `status`) VALUES
-(12, 'T0001', 'w1', 1, 1, '1', 500, '1'),
-(13, 'T0001', 'w1', 2, 2, '1', 500, '2'),
-(14, 'T0001', 'w1', 2, 1, '1', 500, '2'),
-(15, 'T0002', 'w2', 2, 1, '1', 2000, '2'),
-(16, 'T0002', 'w1', 1, 2, '1', 4000, '2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `customer` (
-  `id_customer` varchar(4) NOT NULL,
-  `prefix_name` varchar(10) NOT NULL,
-  `name_customer` varchar(50) NOT NULL,
-  `tel_customer` varchar(10) NOT NULL,
-  `id_districts` varchar(20) NOT NULL,
-  `id_amphures` varchar(20) NOT NULL,
-  `id_provinces` varchar(20) NOT NULL,
-  `zip_code` int(5) NOT NULL,
-  `address_customer` varchar(30) NOT NULL,
-  `email_customer` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id_customer`, `prefix_name`, `name_customer`, `tel_customer`, `id_districts`, `id_amphures`, `id_provinces`, `zip_code`, `address_customer`, `email_customer`) VALUES
-('C001', 'นาย', 'อโนทัย บุญทักษ์', '0865972534', '100203', '2', '1', 10300, 'หมู่ 3 หมู่บ้าน บุญรอด', 'anothai@gmail.com'),
-('C002', 'นาย', 'เกียรติภูมิ บู่เอียด', '0630907500', '110203', '53', '2', 10560, '21', 'pond@hotmail.com'),
-('C003', 'นาย', 'ศักดา บุญสิริพิพัฒน์', '0937373593', '120102', '58', '3', 11000, '78', 'king@hotmail.com'),
-('C004', 'นาง', 'ยินดี', '0888888888', '250302', '191', '16', 25220, '112', 'yindee@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `delivery`
---
-
-CREATE TABLE `delivery` (
-  `no_delivery` int(10) NOT NULL,
-  `id_receipt_delivery` varchar(10) NOT NULL,
-  `id_product` varchar(4) NOT NULL,
-  `delivery_number` int(3) NOT NULL,
-  `price_delivery` int(5) NOT NULL,
-  `total_delivery` int(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `delivery`
---
-
-INSERT INTO `delivery` (`no_delivery`, `id_receipt_delivery`, `id_product`, `delivery_number`, `price_delivery`, `total_delivery`, `status`) VALUES
-(4, 'SA0001', 'A001', 3, 200, 600, '0'),
-(5, 'SA0001', 'A002', 3, 210, 630, '0'),
-(6, 'SA0003', 'A003', 3, 200, 600, '1');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `districts`
 --
 
 CREATE TABLE `districts` (
-  `id_districts` varchar(6) COLLATE utf8_bin NOT NULL,
+  `id` varchar(6) COLLATE utf8_bin NOT NULL,
   `zip_code` int(11) NOT NULL,
   `name_districts` varchar(150) COLLATE utf8_bin NOT NULL,
   `name_en` varchar(150) COLLATE utf8_bin NOT NULL,
@@ -1201,7 +1057,7 @@ CREATE TABLE `districts` (
 -- Dumping data for table `districts`
 --
 
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('100101', 10200, 'พระบรมมหาราชวัง', 'Phra Borom Maha Ratchawang', 1),
 ('100102', 10200, 'วังบูรพาภิรมย์', 'Wang Burapha Phirom', 1),
 ('100103', 10200, 'วัดราชบพิธ', 'Wat Ratchabophit', 1),
@@ -2264,9 +2120,9 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('191009', 18160, 'ม่วงงาม', 'Muang Ngam', 132),
 ('191010', 18160, 'เริงราง', 'Roeng Rang', 132),
 ('191011', 18160, 'เมืองเก่า', 'Mueang Kao', 132),
-('191012', 18160, 'สวนดอกไม้', 'Suan Dok Mai', 132);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
-('191101', 18180, 'มวกเหล็ก', 'Muak Lek', 133),
+('191012', 18160, 'สวนดอกไม้', 'Suan Dok Mai', 132),
+('191101', 18180, 'มวกเหล็ก', 'Muak Lek', 133);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('191102', 18180, 'มิตรภาพ', 'Mittraphap', 133),
 ('191103', 0, '*แสลงพัน', '*Salaeng Phan', 133),
 ('191104', 18180, 'หนองย่างเสือ', 'Nong Yang Suea', 133),
@@ -3331,9 +3187,9 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('310205', 31190, 'หินเหล็กไฟ', 'Hin Lek Fai', 251),
 ('310206', 31190, 'ตูมใหญ่', 'Tum Yai', 251),
 ('310207', 31190, 'หนองขมาร', 'Nong Khaman', 251),
-('310301', 31160, 'กระสัง', 'Krasang', 252);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
-('310302', 31160, 'ลำดวน', 'Lamduan', 252),
+('310301', 31160, 'กระสัง', 'Krasang', 252),
+('310302', 31160, 'ลำดวน', 'Lamduan', 252);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('310303', 31160, 'สองชั้น', 'Song Chan', 252),
 ('310304', 31160, 'สูงเนิน', 'Sung Noen', 252),
 ('310305', 31160, 'หนองเต็ง', 'Nong Teng', 252),
@@ -4445,9 +4301,9 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('360304', 36140, 'โนนสะอาด', 'Non Sa-at', 357),
 ('360305', 36140, 'ห้วยไร่', 'Huai Rai', 357),
 ('360306', 36140, 'บ้านโสก', 'Ban Sok', 357),
-('360307', 36140, 'โคกมั่งงอย', 'Khok Mang Ngoi', 357);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
-('360308', 36140, 'หนองขาม', 'Nong Kham', 357),
+('360307', 36140, 'โคกมั่งงอย', 'Khok Mang Ngoi', 357),
+('360308', 36140, 'หนองขาม', 'Nong Kham', 357);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('360309', 36140, 'ศรีสำราญ', 'Si Samran', 357),
 ('360401', 36120, 'บ้านยาง', 'Ban Yang', 358),
 ('360402', 36120, 'บ้านหัน', 'Ban Han', 358),
@@ -5537,9 +5393,9 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('441301', 44160, 'ชื่นชม', 'Chuen Chom', 489),
 ('441302', 44160, 'กุดปลาดุก', 'Kut Pla Duk', 489),
 ('441303', 44160, 'เหล่าดอกไม้', 'Lao Dok Mai', 489),
-('441304', 44160, 'หนองกุง', 'Nong Kung', 489);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
-('450101', 45000, 'ในเมือง', 'Nai Mueang', 491),
+('441304', 44160, 'หนองกุง', 'Nong Kung', 489),
+('450101', 45000, 'ในเมือง', 'Nai Mueang', 491);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('450102', 45000, 'รอบเมือง', 'Rop Mueang', 491),
 ('450103', 45000, 'เหนือเมือง', 'Nuea Mueang', 491),
 ('450104', 45000, 'ขอนแก่น', 'Khon Kaen', 491),
@@ -6625,10 +6481,10 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('520803', 52160, 'แม่ปะ', 'Mae Pa', 610),
 ('520804', 52160, 'แม่มอก', 'Mae Mok', 610),
 ('520805', 52160, 'เวียงมอก', 'Wiang Mok', 610),
-('520806', 52160, 'นาโป่ง', 'Na Pong', 610);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
+('520806', 52160, 'นาโป่ง', 'Na Pong', 610),
 ('520807', 52160, 'แม่ถอด', 'Mae Thot', 610),
-('520808', 52160, 'เถินบุรี', 'Thoen Buri', 610),
+('520808', 52160, 'เถินบุรี', 'Thoen Buri', 610);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('520901', 52180, 'แม่พริก', 'Mae Phrik', 611),
 ('520902', 52180, 'ผาปัง', 'Pha Pang', 611),
 ('520903', 52180, 'แม่ปุ', 'Mae Pu', 611),
@@ -7705,10 +7561,10 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('650109', 65000, 'บ้านป่า', 'Ban Pa', 739),
 ('650110', 65000, 'ปากโทก', 'Pak Thok', 739),
 ('650111', 65000, 'หัวรอ', 'Hua Ro', 739),
-('650112', 65000, 'จอมทอง', 'Chom Thong', 739);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
+('650112', 65000, 'จอมทอง', 'Chom Thong', 739),
 ('650113', 65000, 'บ้านกร่าง', 'Ban Krang', 739),
-('650114', 65000, 'บ้านคลอง', 'Ban Khlong', 739),
+('650114', 65000, 'บ้านคลอง', 'Ban Khlong', 739);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('650115', 65000, 'พลายชุมพล', 'Phlai Chumphon', 739),
 ('650116', 65000, 'มะขามสูง', 'Makham Sung', 739),
 ('650117', 65000, 'อรัญญิก', 'Aranyik', 739),
@@ -8766,10 +8622,10 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('800406', 80260, 'กะเปียด', 'Kapiat', 839),
 ('800407', 80150, 'นากะชะ', 'Na Kacha', 839),
 ('800408', 0, '*ถ้ำพรรณรา', '*Tham Pannara', 839),
-('800409', 80260, 'ห้วยปริก', 'Huai Prik', 839);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
+('800409', 80260, 'ห้วยปริก', 'Huai Prik', 839),
 ('800410', 80150, 'ไสหร้า', 'Saira', 839),
-('800411', 0, 'หลักช้าง*', 'Lak Chang*', 839),
+('800411', 0, 'หลักช้าง*', 'Lak Chang*', 839);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('800412', 0, 'สวนขัน*', 'Suan Kan*', 839),
 ('800413', 0, '*คลองเส', '*Khlong Se', 839),
 ('800414', 0, '*ดุสิต', '*Dusit', 839),
@@ -9865,10 +9721,10 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 ('950111', 95160, 'ลำพะยา', 'Lam Phaya', 977),
 ('950112', 95000, 'เปาะเส้ง', 'Po Seng', 977),
 ('950113', 0, '*กรงปินัง', '*Krong Pi Nang', 977),
-('950114', 95160, 'พร่อน', 'Phron', 977);
-INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
+('950114', 95160, 'พร่อน', 'Phron', 977),
 ('950115', 95000, 'บันนังสาเรง', 'Bannang Sareng', 977),
-('950116', 95000, 'สะเตงนอก', 'Sateng Nok', 977),
+('950116', 95000, 'สะเตงนอก', 'Sateng Nok', 977);
+INSERT INTO `districts` (`id`, `zip_code`, `name_districts`, `name_en`, `amphure_id`) VALUES
 ('950117', 0, '*ห้วยกระทิง', '*Hua Krating', 977),
 ('950118', 95000, 'ตาเซะ', 'Ta Se', 977),
 ('950201', 95110, 'เบตง', 'Betong', 978),
@@ -10063,39 +9919,6 @@ INSERT INTO `districts` (`id_districts`, `zip_code`, `name_districts`, `name_en`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `employee`
---
-
-CREATE TABLE `employee` (
-  `id_employee` int(4) NOT NULL,
-  `prefix_name` varchar(10) NOT NULL,
-  `username` varchar(12) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `name_employee` varchar(50) NOT NULL,
-  `tel_employee` varchar(10) NOT NULL,
-  `id_districts` varchar(20) NOT NULL,
-  `id_amphures` varchar(20) NOT NULL,
-  `id_provinces` varchar(20) NOT NULL,
-  `zip_code` int(5) NOT NULL,
-  `address_employee` varchar(100) NOT NULL,
-  `email_employee` varchar(50) NOT NULL,
-  `status_employee` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `employee`
---
-
-INSERT INTO `employee` (`id_employee`, `prefix_name`, `username`, `password`, `name_employee`, `tel_employee`, `id_districts`, `id_amphures`, `id_provinces`, `zip_code`, `address_employee`, `email_employee`, `status_employee`) VALUES
-(17, 'นาย', 'SF1', 'e10adc3949ba59abbe56e057f20f883e', 'คณิน ยีนิส', '0891234567', '120101', '58', '3', 11000, '65', 'kanin2@gamil.com', 'Employee'),
-(18, 'นาย', 'SF2', 'e10adc3949ba59abbe56e057f20f883e', 'ปรมินทร์ อินทรัตน์', '0865412547', '100402', '4', '1', 10500, '55', 'aong@gmail.com', 'Admin'),
-(19, 'นาย', 'SF3', 'e10adc3949ba59abbe56e057f20f883e', 'คณิต แก้วฉาย', '0835412657', '110304', '54', '2', 10540, '98', 'kanit@gmail.com', 'Owner'),
-(28, 'นาย', 'SF4', 'e10adc3949ba59abbe56e057f20f883e', 'benz', '0987465321', '150203', '91', '6', 14140, '112', 'benz@gmail.com', 'Employee'),
-(30, 'นาย', 'SF5', 'e10adc3949ba59abbe56e057f20f883e', 'สมหมาย ขายสีu', '0891234567', '230110', '171', '14', 23000, 'hhhh', 'Admin001@gmail.com', 'Employee');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `geographies`
 --
 
@@ -10119,42 +9942,11 @@ INSERT INTO `geographies` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
---
-
-CREATE TABLE `product` (
-  `no_product` int(6) NOT NULL,
-  `id_product` varchar(4) NOT NULL,
-  `name_product` varchar(50) NOT NULL,
-  `price_sell` int(5) NOT NULL,
-  `img_product` varchar(100) NOT NULL,
-  `id_unit` varchar(6) NOT NULL,
-  `id_type_product` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`no_product`, `id_product`, `name_product`, `price_sell`, `img_product`, `id_unit`, `id_type_product`) VALUES
-(1, 'A001', 'กล่องเรียบ สีบรอนด์ 1 มม.', 200, 'klong-lerb.png', 'U1', 'T1'),
-(2, 'A002', 'กล่องร่อง สีบรอนด์ 1 มม.', 210, 'klong-long.png', 'U1', 'T1'),
-(3, 'A003', 'กล่องเปิด สีบรอนด์ 1 มม.', 200, 'klong-perd.png', 'U1', 'T1'),
-(4, 'A004', 'ฝาปิด สีบรอนด์ 1 มม.', 260, 'lid.png', 'U1', 'T1'),
-(5, 'A005', 'กล่องแจ๊คสัน สีบรอนด์ 1 มม.', 230, 'klong-jackson.png', 'U1', 'T1'),
-(6, 'A006', 'ฝาแจ็คสัน สีบรอนด์ 1 มม.', 240, 'fah-jackson.png', 'U1', 'T1'),
-(7, 'A007', 'เสาสวิง สีบรอนด์ 1 มม.', 220, 'sao-pratoo-swing.png', 'U1', 'T1'),
-(29, 'A008', 'รางแขวน สีบรอนด์ 1 มม.', 200, 'suspension_rail.jpg', 'U1', 'T1'),
-(32, 'A009', 'เฟรมข้างบานเลื่อน', 230, 'frame-kang-tid-klong.png', 'U1', 'T1');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `provinces`
 --
 
 CREATE TABLE `provinces` (
-  `id_provinces` int(5) NOT NULL,
+  `id` int(5) NOT NULL,
   `code` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `name_provinces` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `name_en` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
@@ -10165,7 +9957,7 @@ CREATE TABLE `provinces` (
 -- Dumping data for table `provinces`
 --
 
-INSERT INTO `provinces` (`id_provinces`, `code`, `name_provinces`, `name_en`, `geography_id`) VALUES
+INSERT INTO `provinces` (`id`, `code`, `name_provinces`, `name_en`, `geography_id`) VALUES
 (1, '10', 'กรุงเทพมหานคร', 'Bangkok', 2),
 (2, '11', 'สมุทรปราการ', 'Samut Prakan', 2),
 (3, '12', 'นนทบุรี', 'Nonthaburi', 2),
@@ -10244,213 +10036,6 @@ INSERT INTO `provinces` (`id_provinces`, `code`, `name_provinces`, `name_en`, `g
 (76, '96', 'นราธิวาส', 'Narathiwat', 6),
 (77, '97', 'บึงกาฬ', 'buogkan', 3);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `receipt_buy`
---
-
-CREATE TABLE `receipt_buy` (
-  `id_receipt_buy` varchar(10) NOT NULL,
-  `id_employee` varchar(4) NOT NULL,
-  `id_company` varchar(3) NOT NULL,
-  `date_receipt_buy` date NOT NULL,
-  `time_receipt_buy` time NOT NULL,
-  `grand_buy` varchar(10) NOT NULL,
-  `status` varchar(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `receipt_buy`
---
-
-INSERT INTO `receipt_buy` (`id_receipt_buy`, `id_employee`, `id_company`, `date_receipt_buy`, `time_receipt_buy`, `grand_buy`, `status`) VALUES
-('', '', 'F02', '0000-00-00', '00:00:00', '', ''),
-('B0001', 'SF2', 'F01', '2022-12-05', '23:37:42', '680', '1'),
-('B0002', 'SF2', 'F01', '2022-12-05', '23:38:44', '4000', '1'),
-('B0003', 'SF2', 'F01', '2022-12-05', '23:40:09', '6000', '1'),
-('B0004', 'SF2', 'F01', '2022-12-05', '23:40:49', '5000', '1'),
-('B0005', 'SF2', 'F01', '2022-12-05', '23:41:38', '600', '1'),
-('B0006', 'SF4', 'F02', '2022-12-06', '10:48:37', '3000', '1'),
-('B0007', 'SF4', 'F02', '2022-12-06', '10:50:50', '50000', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `receipt_contractor`
---
-
-CREATE TABLE `receipt_contractor` (
-  `id_receipt_contractor` varchar(10) NOT NULL,
-  `id_employee` varchar(10) NOT NULL,
-  `id_customer` varchar(4) NOT NULL,
-  `address_contractor` varchar(300) NOT NULL,
-  `detail_contractor` varchar(300) NOT NULL,
-  `grand_contractor` int(10) NOT NULL,
-  `date_receipt_contractor` date NOT NULL,
-  `time_receipt_contractor` time NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `receipt_contractor`
---
-
-INSERT INTO `receipt_contractor` (`id_receipt_contractor`, `id_employee`, `id_customer`, `address_contractor`, `detail_contractor`, `grand_contractor`, `date_receipt_contractor`, `time_receipt_contractor`, `status`) VALUES
-('T0001', 'SF2', 'C001', 'ซอย 4', 'บานเลื่อนรางแขวน กว้าง 1 สูง 1', 1500, '2022-12-05', '23:43:16', '2'),
-('T0002', 'SF4', 'C001', 'สงขลา', 'บานเลื่อนหน้าต่าง 1ชุด\r\nประตูบานเลื่อนรางแขวน 1ชุด', 6000, '2022-12-06', '11:00:13', '2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `receipt_delivery`
---
-
-CREATE TABLE `receipt_delivery` (
-  `id_receipt_delivery` varchar(10) NOT NULL,
-  `id_employee` varchar(4) NOT NULL,
-  `id_customer` varchar(4) NOT NULL,
-  `address_delivery` varchar(300) NOT NULL,
-  `date_receipt_delivery` date NOT NULL,
-  `time_receipt_delivery` time NOT NULL,
-  `grand_delivery` varchar(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `receipt_delivery`
---
-
-INSERT INTO `receipt_delivery` (`id_receipt_delivery`, `id_employee`, `id_customer`, `address_delivery`, `date_receipt_delivery`, `time_receipt_delivery`, `grand_delivery`, `status`) VALUES
-('SA0001', 'SF2', 'C001', 'ซอย 4', '2022-12-05', '23:42:25', '', '1'),
-('SA0003', 'SF4', 'C001', 'สงขลา', '2022-12-06', '10:54:04', '', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `receipt_sell`
---
-
-CREATE TABLE `receipt_sell` (
-  `id_receipt_sell` varchar(10) NOT NULL,
-  `id_employee` varchar(4) NOT NULL,
-  `id_customer` varchar(4) NOT NULL,
-  `date_receipt_sell` date NOT NULL,
-  `time_receipt_sell` time NOT NULL,
-  `grand_sell` varchar(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `receipt_sell`
---
-
-INSERT INTO `receipt_sell` (`id_receipt_sell`, `id_employee`, `id_customer`, `date_receipt_sell`, `time_receipt_sell`, `grand_sell`, `status`) VALUES
-('SA0001', 'SF2', 'C001', '2022-12-05', '23:42:25', '', '1'),
-('SA0003', 'SF4', 'C001', '2022-12-06', '10:54:04', '', '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sell`
---
-
-CREATE TABLE `sell` (
-  `no_sell` int(10) NOT NULL,
-  `id_receipt_sell` varchar(10) NOT NULL,
-  `id_product` varchar(4) NOT NULL,
-  `sell_number` int(3) NOT NULL,
-  `price_sell` int(5) NOT NULL,
-  `total_sell` int(10) NOT NULL,
-  `status` varchar(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sell`
---
-
-INSERT INTO `sell` (`no_sell`, `id_receipt_sell`, `id_product`, `sell_number`, `price_sell`, `total_sell`, `status`) VALUES
-(5, 'SA0001', 'A001', 3, 200, 600, '1'),
-(6, 'SA0001', 'A002', 3, 210, 630, '1'),
-(9, 'SA0003', 'A003', 3, 200, 600, '1');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `type_product`
---
-
-CREATE TABLE `type_product` (
-  `id_type_product` varchar(2) NOT NULL,
-  `name_type_product` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `type_product`
---
-
-INSERT INTO `type_product` (`id_type_product`, `name_type_product`) VALUES
-('T1', 'อลูมิเนียม'),
-('T2', 'อุปกรณ์'),
-('T3', 'กระจก'),
-('T4', 'น็อต'),
-('T5', 'รีเวท'),
-('T7', 'กระจก');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `type_work`
---
-
-CREATE TABLE `type_work` (
-  `id_type_work` varchar(5) NOT NULL,
-  `name_type_work` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `type_work`
---
-
-INSERT INTO `type_work` (`id_type_work`, `name_type_work`) VALUES
-('w1', 'บานเลื่อนรางแขวน'),
-('w2', 'บานเลื่อนหน้าต่าง'),
-('w3', 'หน้าต่างบานเลื่อน2');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `unit`
---
-
-CREATE TABLE `unit` (
-  `id_unit` varchar(6) NOT NULL,
-  `name_unit` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `unit`
---
-
-INSERT INTO `unit` (`id_unit`, `name_unit`) VALUES
-('U1', 'เส้น'),
-('U2', 'แผ่น'),
-('U3', 'กล่อง'),
-('U4', 'ชิ้น'),
-('U5', 'ตัว');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `work`
---
-
-CREATE TABLE `work` (
-  `no_work` int(11) NOT NULL,
-  `id_type_work` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `id_product` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Indexes for dumped tables
 --
@@ -10459,49 +10044,13 @@ CREATE TABLE `work` (
 -- Indexes for table `amphures`
 --
 ALTER TABLE `amphures`
-  ADD PRIMARY KEY (`id_amphures`);
-
---
--- Indexes for table `buy`
---
-ALTER TABLE `buy`
-  ADD PRIMARY KEY (`no_buy`);
-
---
--- Indexes for table `company`
---
-ALTER TABLE `company`
-  ADD PRIMARY KEY (`id_company`);
-
---
--- Indexes for table `contractor`
---
-ALTER TABLE `contractor`
-  ADD PRIMARY KEY (`no_contractor`);
-
---
--- Indexes for table `customer`
---
-ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id_customer`);
-
---
--- Indexes for table `delivery`
---
-ALTER TABLE `delivery`
-  ADD PRIMARY KEY (`no_delivery`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `districts`
 --
 ALTER TABLE `districts`
-  ADD PRIMARY KEY (`id_districts`);
-
---
--- Indexes for table `employee`
---
-ALTER TABLE `employee`
-  ADD PRIMARY KEY (`id_employee`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `geographies`
@@ -10510,70 +10059,10 @@ ALTER TABLE `geographies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`no_product`);
-
---
 -- Indexes for table `provinces`
 --
 ALTER TABLE `provinces`
-  ADD PRIMARY KEY (`id_provinces`);
-
---
--- Indexes for table `receipt_buy`
---
-ALTER TABLE `receipt_buy`
-  ADD PRIMARY KEY (`id_receipt_buy`);
-
---
--- Indexes for table `receipt_contractor`
---
-ALTER TABLE `receipt_contractor`
-  ADD PRIMARY KEY (`id_receipt_contractor`);
-
---
--- Indexes for table `receipt_delivery`
---
-ALTER TABLE `receipt_delivery`
-  ADD PRIMARY KEY (`id_receipt_delivery`);
-
---
--- Indexes for table `receipt_sell`
---
-ALTER TABLE `receipt_sell`
-  ADD PRIMARY KEY (`id_receipt_sell`);
-
---
--- Indexes for table `sell`
---
-ALTER TABLE `sell`
-  ADD PRIMARY KEY (`no_sell`);
-
---
--- Indexes for table `type_product`
---
-ALTER TABLE `type_product`
-  ADD PRIMARY KEY (`id_type_product`);
-
---
--- Indexes for table `type_work`
---
-ALTER TABLE `type_work`
-  ADD PRIMARY KEY (`id_type_work`);
-
---
--- Indexes for table `unit`
---
-ALTER TABLE `unit`
-  ADD PRIMARY KEY (`id_unit`);
-
---
--- Indexes for table `work`
---
-ALTER TABLE `work`
-  ADD PRIMARY KEY (`no_work`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -10583,31 +10072,7 @@ ALTER TABLE `work`
 -- AUTO_INCREMENT for table `amphures`
 --
 ALTER TABLE `amphures`
-  MODIFY `id_amphures` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
-
---
--- AUTO_INCREMENT for table `buy`
---
-ALTER TABLE `buy`
-  MODIFY `no_buy` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `contractor`
---
-ALTER TABLE `contractor`
-  MODIFY `no_contractor` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `delivery`
---
-ALTER TABLE `delivery`
-  MODIFY `no_delivery` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `employee`
---
-ALTER TABLE `employee`
-  MODIFY `id_employee` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1007;
 
 --
 -- AUTO_INCREMENT for table `geographies`
@@ -10616,28 +10081,10 @@ ALTER TABLE `geographies`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `no_product` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=393;
-
---
 -- AUTO_INCREMENT for table `provinces`
 --
 ALTER TABLE `provinces`
-  MODIFY `id_provinces` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
-
---
--- AUTO_INCREMENT for table `sell`
---
-ALTER TABLE `sell`
-  MODIFY `no_sell` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `work`
---
-ALTER TABLE `work`
-  MODIFY `no_work` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
